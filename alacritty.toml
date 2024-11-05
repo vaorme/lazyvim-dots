@@ -46,7 +46,7 @@ style = "Block"
 unfocused_hollow = true
 
 [font]
-size = 14
+size = 16
 
 [font.normal]
 family = "IosevkaTerm NFM"
@@ -71,3 +71,9 @@ save_to_clipboard = true
 [terminal.shell]
 program = "C:\\Program Files\\PowerShell\\7\\pwsh.exe"
 args = ["-NoLogo"]
+
+[keyboard]
+bindings = [
+    { key = "C", mods = "Control", action = "Copy" },  # Copy to clipboard
+    { key = "V", mods = "Control", action = "Paste" }   # Paste from clipboard
+]

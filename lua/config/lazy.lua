@@ -15,60 +15,61 @@ vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
 -- Fix copy and paste in WSL (Windows Subsystem for Linux)
 if vim.fn.has("wsl") == 1 then
-  vim.g.clipboard = {
-    name = "win32yank", -- Use win32yank for clipboard operations
-    copy = {
-      ["+"] = "win32yank.exe -i --crlf", -- Command to copy to the system clipboard
-      ["*"] = "win32yank.exe -i --crlf", -- Command to copy to the primary clipboard
-    },
-    paste = {
-      ["+"] = "win32yank.exe -o --lf", -- Command to paste from the system clipboard
-      ["*"] = "win32yank.exe -o --lf", -- Command to paste from the primary clipboard
-    },
-    cache_enabled = false, -- Disable clipboard caching
-  }
+	vim.g.clipboard = {
+		name = "win32yank", -- Use win32yank for clipboard operations
+		copy = {
+			["+"] = "win32yank.exe -i --crlf", -- Command to copy to the system clipboard
+			["*"] = "win32yank.exe -i --crlf", -- Command to copy to the primary clipboard
+		},
+		paste = {
+			["+"] = "win32yank.exe -o --lf", -- Command to paste from the system clipboard
+			["*"] = "win32yank.exe -o --lf", -- Command to paste from the primary clipboard
+		},
+		cache_enabled = false, -- Disable clipboard caching
+	}
 end
 
 -- Setup lazy.nvim with the specified configuration
 require("lazy").setup({
-  spec = {
-    -- Add LazyVim and import its plugins
-    { "LazyVim/LazyVim", import = "lazyvim.plugins" },
-    -- Import any extra modules here
-    { import = "lazyvim.plugins.extras.lang.json" },
-    { import = "lazyvim.plugins.extras.lang.typescript" },
-    { import = "lazyvim.plugins.extras.editor.harpoon2" },
-    { import = "lazyvim.plugins.extras.coding.mini-surround" },
-    { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
-    { import = "lazyvim.plugins.extras.dap.core" },
+	spec = {
+		-- Add LazyVim and import its plugins
+		{ "LazyVim/LazyVim", import = "lazyvim.plugins" },
+		-- Import any extra modules here
+		{ import = "lazyvim.plugins.extras.lang.json" },
+		{ import = "lazyvim.plugins.extras.lang.typescript" },
+		{ import = "lazyvim.plugins.extras.editor.harpoon2" },
+		{ import = "lazyvim.plugins.extras.coding.mini-surround" },
+		{ import = "lazyvim.plugins.extras.util.mini-hipatterns" },
+		{ import = "lazyvim.plugins.extras.dap.core" },
 
-    -- Import/override with your plugins
-    { import = "plugins" },
-  },
-  defaults = {
-    -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
-    -- If you know what you're doing, you can set this to `true` to have all your custom plugins lazy-loaded by default.
-    lazy = false,
-    -- It's recommended to leave version=false for now, since a lot of the plugins that support versioning
-    -- have outdated releases, which may break your Neovim install.
-    version = false, -- Always use the latest git commit
-    -- version = "*", -- Try installing the latest stable version for plugins that support semver
-  },
-  install = { colorscheme = { "tokyonight", "habamax" } }, -- Specify colorschemes to install
-  checker = { enabled = true }, -- Automatically check for plugin updates
-  performance = {
-    rtp = {
-      -- Disable some runtime path plugins to improve performance
-      disabled_plugins = {
-        "gzip",
-        -- "matchit",
-        -- "matchparen",
-        -- "netrwPlugin",
-        "tarPlugin",
-        "tohtml",
-        "tutor",
-        "zipPlugin",
-      },
-    },
-  },
+		-- Import/override with your plugins
+		{ import = "plugins" },
+	},
+	defaults = {
+		-- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
+		-- If you know what you're doing, you can set this to `true` to have all your custom plugins lazy-loaded by default.
+		lazy = false,
+		-- It's recommended to leave version=false for now, since a lot of the plugins that support versioning
+		-- have outdated releases, which may break your Neovim install.
+		version = false, -- Always use the latest git commit
+		-- version = "*", -- Try installing the latest stable version for plugins that support semver
+	},
+	install = { colorscheme = { "tokyonight", "habamax" } }, -- Specify colorschemes to install
+	checker = { enabled = true }, -- Automatically check for plugin updates
+	performance = {
+		rtp = {
+			-- Disable some runtime path plugins to improve performance
+			disabled_plugins = {
+				"gzip",
+				-- "matchit",
+				-- "matchparen",
+				-- "netrwPlugin",
+				"tarPlugin",
+				"tohtml",
+				"tutor",
+				"zipPlugin",
+			},
+		},
+	},
 })
+
